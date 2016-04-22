@@ -25,6 +25,19 @@ namespace KonturMap.Server.WebApp.Controllers
 			if (!ModelState.IsValid)
 				return HttpBadRequest();
 
+			// todo: implement business logic
+
+			return Json(new LoginOutputModel { AuthorizationToken = Guid.NewGuid().ToString(), Expired = DateTimeOffset.Now.AddDays(1) });
+		}
+
+		[HttpPost("LoginPhone")]
+		public async Task<IActionResult> LoginByPhone(LoginByPhoneInputModel model)
+		{
+			if (!ModelState.IsValid)
+				return HttpBadRequest();
+
+			// todo: implement business logic
+
 			return Json(new LoginOutputModel { AuthorizationToken = Guid.NewGuid().ToString(), Expired = DateTimeOffset.Now.AddDays(1) });
 		}
 	}
