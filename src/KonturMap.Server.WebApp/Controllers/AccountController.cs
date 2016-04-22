@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using KonturMap.Server.WebApp.ViewModels.Account;
 using Microsoft.AspNet.Mvc;
 
@@ -19,12 +20,12 @@ namespace KonturMap.Server.WebApp.Controllers
 	    }
 
 		[HttpPost("Login")]
-		public async Task<IActionResult> Login()
+		public async Task<IActionResult> Login(LoginInputModel model)
 		{
 			if (!ModelState.IsValid)
 				return HttpBadRequest();
 
-			return Ok();
+			return Json(new LoginOutputModel { AuthorizationToken = Guid.NewGuid().ToString(), Expired = DateTimeOffset.Now.AddDays(1) });
 		}
 	}
 }
