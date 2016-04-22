@@ -1,15 +1,19 @@
 ﻿using System.Threading.Tasks;
+using KonturMap.Server.WebApp.ViewModels.Account;
 using Microsoft.AspNet.Mvc;
 
 namespace KonturMap.Server.WebApp.Controllers
 {
-    public class AccountController : Controller
+	[Route("api/[controller]")]
+	public class AccountController : Controller
     {
 		[HttpPost("RegisterDevice")]
-		public async Task<IActionResult> RegisterDevice()
+		public async Task<IActionResult> RegisterDevice(RegisterDeviceInputModel model)
 	    {
 		    if (!ModelState.IsValid)
 			    return HttpBadRequest();
+
+			// todo: implement business logic
 
 			return Ok();
 	    }
