@@ -5,7 +5,6 @@ using Microsoft.AspNet.Mvc;
 
 namespace KonturMap.Server.WebApp.Controllers
 {
-	
     public class MapController : Controller
     {
 	    [HttpGet]

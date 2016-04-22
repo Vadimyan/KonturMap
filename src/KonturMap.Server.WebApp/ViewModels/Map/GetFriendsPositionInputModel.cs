@@ -2,15 +2,7 @@
 
 namespace KonturMap.Server.WebApp.ViewModels.Map
 {
-	public class GetFriendsPositionInputModel
+	public class GetFriendsPositionInputModel : MapModel
 	{
-		[Required]
-		public double MapLatitude { get; set; }
-
-		[Required]
-		public double MapLongitude { get; set; }
-
-		[Required]
-		public int Radis { get; set; }
 	}
 }
