@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using KonturMap.Server.WebApp.ViewModels;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 
 namespace KonturMap.Server.WebApp.Controllers
@@ -10,7 +6,7 @@ namespace KonturMap.Server.WebApp.Controllers
     public class PositionController : Controller
     {
 		[HttpPost]
-	    public async Task<IActionResult> Post(Position model)
+	    public async Task<IActionResult> Post()
 	    {
 		    return Ok();
 	    }

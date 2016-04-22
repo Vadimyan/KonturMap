@@ -1,14 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
-using KonturMap.Server.WebApp.ViewModels.Account;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 
 namespace KonturMap.Server.WebApp.Controllers
 {
     public class AccountController : Controller
     {
-		[HttpPost]
-		public async Task<IActionResult> RegisterDevice(RegisterDeviceInputModel model)
+		[HttpPost("RegisterDevice")]
+		public async Task<IActionResult> RegisterDevice()
 	    {
 		    if (!ModelState.IsValid)
 			    return HttpBadRequest();
@@ -16,13 +14,13 @@ namespace KonturMap.Server.WebApp.Controllers
 			return Ok();
 	    }
 
-		[HttpPost]
-		public async Task<IActionResult> Login(LoginInputModel model)
+		[HttpPost("Login")]
+		public async Task<IActionResult> Login()
 		{
 			if (!ModelState.IsValid)
 				return HttpBadRequest();
 
-			return Json(new LoginOutputModel { AuthorizationToken = "TempToken", Expired = DateTimeOffset.Now.AddDays(1) });
+			return Ok();
 		}
 	}
 }

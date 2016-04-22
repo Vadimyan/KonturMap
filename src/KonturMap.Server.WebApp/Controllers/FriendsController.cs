@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using KonturMap.Server.WebApp.ViewModels;
-using KonturMap.Server.WebApp.ViewModels.Friends;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 
 namespace KonturMap.Server.WebApp.Controllers
@@ -12,11 +9,11 @@ namespace KonturMap.Server.WebApp.Controllers
 	    [HttpGet]
 	    public async Task<IActionResult> Get()
 	    {
-		    return Json(new GetFriendsOutputModel { Friends = new [] { new Friend { Name = "John Doe", PhoneNumber = "+79043452457", LastSeen = DateTimeOffset.Now.AddHours(-1) } } });
+		    return Ok();
 	    }
 
 		[HttpPost]
-	    public async Task<IActionResult> Post(PostFriendsInputModel model)
+	    public async Task<IActionResult> Post()
 	    {
 		    return Ok();
 	    }
