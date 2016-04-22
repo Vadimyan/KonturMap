@@ -20,7 +20,7 @@ namespace KonturMap.Server.WebApp.Controllers
 
 		[HttpPost]
 		[Route("api/[controller]/{friendId}")]
-		public async Task<IActionResult> UpdateFriendStatus(int friendId, UpdateFriendStatusInputModel model)
+		public async Task<IActionResult> UpdateFriendStatus(int friendId)
 		{
 			return Ok();
 		}
