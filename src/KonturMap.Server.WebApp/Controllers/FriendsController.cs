@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using KonturMap.Server.WebApp.ViewModels.Friends;
 using Microsoft.AspNet.Mvc;
 
 namespace KonturMap.Server.WebApp.Controllers
@@ -9,19 +11,30 @@ namespace KonturMap.Server.WebApp.Controllers
 	    [HttpGet]
 	    public async Task<IActionResult> Get()
 	    {
-		    return Ok();
+			//todo: implement business logic
+
+		    var result = new[]
+		    {
+			    new GetFriendsOutputModel { Id = 9043452090, LastSeen = DateTimeOffset.Now },
+				new GetFriendsOutputModel { Id = 9043452458, LastSeen = DateTime.Today },
+				new GetFriendsOutputModel { Id = 9043452458, LastSeen = DateTime.UtcNow }
+			};
+
+		    return Json(result);
 	    }
 
 		[HttpPost]
-	    public async Task<IActionResult> Post()
+	    public async Task<IActionResult> Post(PostFriendsInputModel[] model)
 	    {
-		    return Ok();
+			//todo: implement business logic
+
+			return Ok();
 	    }
 
-		[HttpPost]
-		[Route("api/[controller]/{friendId}")]
-		public async Task<IActionResult> UpdateFriendStatus(int friendId)
+		[HttpPost("{friendId}")]
+		public async Task<IActionResult> UpdateFriendStatus(int friendId, [FromBody] PostFriendInputModel model)
 		{
+			//todo: implement business logic
 			return Ok();
 		}
     }
