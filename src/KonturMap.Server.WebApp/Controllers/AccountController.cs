@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using KonturMap.Server.DAL;
 using KonturMap.Server.WebApp.Common;
 using KonturMap.Server.WebApp.ViewModels.Account;
 using Microsoft.AspNet.Mvc;
@@ -15,6 +16,7 @@ namespace KonturMap.Server.WebApp.Controllers
 		    if (!ModelState.IsValid)
 			    return HttpBadRequest();
 
+			//UserModel.RegNewUser()
 			// todo: implement business logic
 
 			return Ok();
