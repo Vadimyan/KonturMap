@@ -8,7 +8,7 @@ namespace KonturMap.Server.WebApp.Common
     {
 		private static MemoryCache sessionsCache = new MemoryCache(new MemoryCacheOptions());
 
-	    public static void AddSession(int userId, string token)
+	    public static void AddSession(long userId, string token)
 	    {
 		    var options = new MemoryCacheEntryOptions();
 			options.AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(1);

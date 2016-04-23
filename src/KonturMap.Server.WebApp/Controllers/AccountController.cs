@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using KonturMap.Server.WebApp.Common;
 using KonturMap.Server.WebApp.ViewModels.Account;
 using Microsoft.AspNet.Mvc;
 
@@ -26,8 +27,16 @@ namespace KonturMap.Server.WebApp.Controllers
 				return HttpBadRequest();
 
 			// todo: implement business logic
+			var userId = GetUser(model.DeviceId);
+			var token = Guid.NewGuid().ToString();
+			SessionsService.AddSession(userId, token);
 
-			return Json(new LoginOutputModel { AuthorizationToken = Guid.NewGuid().ToString(), Expired = DateTimeOffset.Now.AddDays(1) });
+			return Json(new LoginOutputModel { AuthorizationToken = token, Expired = DateTimeOffset.Now.AddDays(1) });
+		}
+
+		private long GetUser(string deviceId)
+		{
+			return deviceId.GetHashCode();
 		}
 
 		[HttpPost("LoginPhone")]
