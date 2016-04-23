@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
 
 namespace KonturMap.Server.DAL
 {
     public class UserModel
     {
-        public static async Task<bool> RegNewUser(long phone, string pass_hash)
+        public static async Task<bool> RegNewUser(long phone, string password, string deviceId)
         {
             return await Task<bool>.Factory.StartNew(new Func<bool>(() => 
             {
@@ -24,7 +23,7 @@ namespace KonturMap.Server.DAL
             }));
         }
 
-        public static async Task<bool> LoginByPhone(long phone, string pass_hash)
+        public static async Task<bool> LoginByPhone(long phone, string password)
         {
             return await Task<bool>.Factory.StartNew(new Func<bool>(() =>
             {
@@ -69,5 +68,4 @@ namespace KonturMap.Server.DAL
     //            }
     //        }
     //    }
-    }
 }

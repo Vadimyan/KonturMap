@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using KonturMap.Server.DAL;
 using KonturMap.Server.WebApp.Common;
 using KonturMap.Server.WebApp.ViewModels.Account;
 using Microsoft.AspNet.Mvc;
@@ -15,9 +16,10 @@ namespace KonturMap.Server.WebApp.Controllers
 		    if (!ModelState.IsValid)
 			    return HttpBadRequest();
 
-			// todo: implement business logic
+			var number = PhoneConverter.Convert(model.OwnerNumber);
+			var result = await UserModel.RegNewUser(number, model.Password, model.DeviceId);
 
-			return Ok();
+			return result ? Ok() : new HttpStatusCodeResult(500);
 	    }
 
 		[HttpPost("Login")]
@@ -26,17 +28,12 @@ namespace KonturMap.Server.WebApp.Controllers
 			if (!ModelState.IsValid)
 				return HttpBadRequest();
 
-			// todo: implement business logic
-			var userId = GetUser(model.DeviceId);
+			var userId = await UserModel.LoginByDeviceID(model.DeviceId);
+
 			var token = Guid.NewGuid().ToString();
 			SessionsService.AddSession(userId, token);
 
 			return Json(new LoginOutputModel { AuthorizationToken = token, Expired = DateTimeOffset.Now.AddDays(1) });
-		}
-
-		private long GetUser(string deviceId)
-		{
-			return deviceId.GetHashCode();
 		}
 
 		[HttpPost("LoginPhone")]
@@ -45,9 +42,17 @@ namespace KonturMap.Server.WebApp.Controllers
 			if (!ModelState.IsValid)
 				return HttpBadRequest();
 
-			// todo: implement business logic
+			var number = PhoneConverter.Convert(model.PhoneNumber);
+			bool result = await UserModel.LoginByPhone(number, model.Password);
 
-			return Json(new LoginOutputModel { AuthorizationToken = Guid.NewGuid().ToString(), Expired = DateTimeOffset.Now.AddDays(1) });
+			if (result)
+			{
+				var token = Guid.NewGuid().ToString();
+				SessionsService.AddSession(number, token);
+				return Json(new LoginOutputModel { AuthorizationToken = token, Expired = DateTimeOffset.Now.AddDays(1) });
+			}
+
+			return HttpNotFound();
 		}
 	}
 }
