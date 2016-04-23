@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using KonturMap.Server.WebApp.Common;
 using KonturMap.Server.WebApp.ViewModels.Friends;
 using Microsoft.AspNet.Mvc;
 
 namespace KonturMap.Server.WebApp.Controllers
 {
+	[HeaderAuthorizationFilter]
 	[Route("api/[controller]")]
     public class FriendsController : Controller
     {

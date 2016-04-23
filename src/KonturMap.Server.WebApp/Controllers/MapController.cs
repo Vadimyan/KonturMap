@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using KonturMap.Server.WebApp.Common;
 using KonturMap.Server.WebApp.ViewModels.Map;
 using Microsoft.AspNet.Mvc;
 
 namespace KonturMap.Server.WebApp.Controllers
 {
-    public class MapController : Controller
+	[HeaderAuthorizationFilter]
+	public class MapController : Controller
     {
 	    [HttpGet]
 		[Route("api/Friends/Position")]

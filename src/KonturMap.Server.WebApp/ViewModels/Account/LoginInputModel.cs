@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNet.Mvc;
 
 namespace KonturMap.Server.WebApp.ViewModels.Account
 {

@@ -1,9 +1,11 @@
 ﻿using System.Threading.Tasks;
+using KonturMap.Server.WebApp.Common;
 using KonturMap.Server.WebApp.ViewModels.Position;
 using Microsoft.AspNet.Mvc;
 
 namespace KonturMap.Server.WebApp.Controllers
 {
+	[HeaderAuthorizationFilter]
 	[Route("api/[controller]")]
 	public class PositionController : Controller
     {
